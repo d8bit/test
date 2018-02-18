@@ -6,7 +6,7 @@ class ListItem {
     create() {
         let text = prompt("Enter text");
         text = text.trim();
-        if (text != null && text !== '') {
+        if (null !== text && '' !== text) {
             this.text = text;
             return true;
         }
