@@ -25,8 +25,6 @@ function init() {
         }
     });
 
-    // list.render();
-
 }
 
 init();
