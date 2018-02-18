@@ -10,9 +10,10 @@ class List {
 
     addItem(item) {
         let listItem = new ListItem();
-        listItem.create();
-        this.items.push(listItem);
-        this.render();
+        if (listItem.create()) {
+            this.items.push(listItem);
+            this.render();
+        }
     }
 
     deleteItems() {

@@ -4,8 +4,9 @@ class ListItem {
     }
 
     create() {
-        const text = prompt("Text");
-        if (text != null) {
+        let text = prompt("Enter text");
+        text = text.trim();
+        if (text != null && text !== '') {
             this.text = text;
             return true;
         }
