@@ -1,9 +1,10 @@
 import ListItem from './ListItem';
+import _ from 'underscore';
 
 class List {
 
-    constructor(listId) {
-        this.listId = listId;
+    constructor(id) {
+        this.id = id;
         this.items = [];
     }
 
@@ -14,17 +15,24 @@ class List {
         this.render();
     }
 
-    deleteItem(item) {
-
+    deleteItems() {
+        var that = this;
+        const items = document.querySelectorAll(this.id + ' option:checked');
+        items.forEach(function (item) {
+            that.items = _.reject(that.items, function(element) {
+                return element.text === item.text;
+            });
+        });
+        this.render();
     }
 
     render() {
-        document.querySelector(this.listId).innerHTML = "";
+        document.querySelector(this.id).innerHTML = "";
         let html = "";
         this.items.forEach(function(item) {
             html += "<option value=''>"+item.text+"</option>";
         });
-        document.querySelector(this.listId).innerHTML = html;
+        document.querySelector(this.id).innerHTML = html;
     }
 }
 

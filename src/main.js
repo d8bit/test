@@ -9,7 +9,8 @@ function init() {
     });
 
     deleteButton.addEventListener('click', function() {
-        console.log('delete');
+        console.log(list);
+        list.deleteItems();
     });
 }
 
