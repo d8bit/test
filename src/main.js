@@ -1,14 +1,5 @@
 import List from './List';
 
-function load() {
-    const session = JSON.parse(sessionStorage.getItem('list'));
-    const list = new List(session.id);
-    session.items.forEach(function(item) {
-        list.addItem(item);
-    });
-    list.render();
-    return list;
-}
 
 function init() {
     const listId = '#list'
@@ -16,9 +7,6 @@ function init() {
     const delBtnId = '#delete-item-btn';
 
     var list = new List(listId);
-    if (null != sessionStorage.getItem('list')) {
-        var list = load();
-    }
 
     const addButton = document.querySelector(addBtnId);
     const deleteButton = document.querySelector(delBtnId);
@@ -37,7 +25,9 @@ function init() {
         }
     });
 
+    // list.render();
 
 }
 
 init();
+
