@@ -1,0 +1,19 @@
+body {
+    padding: 10px;
+}
+
+.list {
+    min-width: 200px;
+    min-height: 400px;
+    float: left;
+}
+
+.buttons {
+    float: left;
+    margin: 0 5px;
+}
+
+.btn {
+    width: 50px;
+    height: 30px;
+}
