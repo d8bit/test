@@ -1,4 +1,5 @@
 import ListItem from './ListItem';
+import State from './State';
 import $ from 'jQuery';
 import _ from 'underscore';
 
@@ -7,6 +8,7 @@ class List {
     constructor(id) {
         this.id = id;
         this.items = [];
+        this.state = new State();
         const that = this;
         this.init(function() {
             if (null != sessionStorage.getItem('list')) {
@@ -21,7 +23,7 @@ class List {
         this.items = [];
         const that = this;
         session.items.forEach(function(item) {
-            that.addItem(item);
+            that.addItem(item.text);
         });
     }
 
@@ -30,7 +32,7 @@ class List {
         $.getJSON("/restful/data.json", function(response) {
             if (response.status == "success") {
                 response.data.forEach(function(item) {
-                    that.items.push(item);
+                    that.addItem(item.text);
                 });
                 callback();
             } else {
@@ -40,18 +42,22 @@ class List {
     }
 
     addItem(item) {
-        this.items.push(item);
+        this.state.addState(this.items);
+        const newItem = new ListItem(item);
+        this.items.push(newItem);
     }
 
     createItem(item) {
         let listItem = new ListItem();
         if (listItem.create()) {
+            this.state.addState(this.items);
             this.items.push(listItem);
             this.render();
         }
     }
 
     deleteItem(item) {
+        this.state.addState(this.items);
         this.items = _.reject(this.items, function(element) {
             return element.text === item.text;
         });
@@ -59,6 +65,7 @@ class List {
     }
 
     deleteItems() {
+        this.state.addState(this.items);
         var that = this;
         const items = document.querySelectorAll(this.id + ' option:checked');
         items.forEach(function (item) {
@@ -68,6 +75,14 @@ class List {
         });
         sessionStorage.setItem('list', this);
         this.render();
+    }
+
+    undo() {
+        const state = this.state.removeState();
+        if (state) {
+            this.items = state;
+            this.render();
+        }
     }
 
     render() {

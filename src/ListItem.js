@@ -1,12 +1,12 @@
 class ListItem {
-    constructor() {
-        this.text = '';
+    constructor(text) {
+        this.text = text;
     }
 
     create() {
         let text = prompt("Enter text");
-        text = text.trim();
         if (null !== text && '' !== text) {
+            text = text.trim();
             this.text = text;
             return true;
         }
