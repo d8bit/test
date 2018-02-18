@@ -2,8 +2,8 @@ import ListItem from './ListItem';
 
 class List {
 
-    constructor(domId) {
-        this.domId = domId;
+    constructor(listId) {
+        this.listId = listId;
         this.items = [];
     }
 
@@ -14,13 +14,17 @@ class List {
         this.render();
     }
 
+    deleteItem(item) {
+
+    }
+
     render() {
-        document.querySelector(this.domId).innerHTML = "";
+        document.querySelector(this.listId).innerHTML = "";
         let html = "";
         this.items.forEach(function(item) {
             html += "<option value=''>"+item.text+"</option>";
         });
-        document.querySelector(this.domId).innerHTML = html;
+        document.querySelector(this.listId).innerHTML = html;
     }
 }
 
