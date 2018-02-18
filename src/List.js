@@ -9,6 +9,10 @@ class List {
     }
 
     addItem(item) {
+        this.items.push(item);
+    }
+
+    createItem(item) {
         let listItem = new ListItem();
         if (listItem.create()) {
             this.items.push(listItem);
@@ -31,10 +35,12 @@ class List {
                 return element.text === item.text;
             });
         });
+        sessionStorage.setItem('list', this);
         this.render();
     }
 
     render() {
+        sessionStorage.setItem('list', JSON.stringify(this));
         document.querySelector(this.id).innerHTML = "";
         let html = "";
         this.items.forEach(function(item) {
