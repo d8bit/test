@@ -57,10 +57,10 @@ class List {
     }
 
     deleteItem(item) {
+        this.state.addState(this.items);
         this.items = _.reject(this.items, function(element) {
             return element.text === item.text;
         });
-        this.state.removeState();
         this.render();
     }
 
