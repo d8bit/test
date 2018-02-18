@@ -42,8 +42,8 @@ class List {
     }
 
     addItem(item) {
-        const newItem = new ListItem(item);
         this.state.addState(this.items);
+        const newItem = new ListItem(item);
         this.items.push(newItem);
     }
 
@@ -65,6 +65,7 @@ class List {
     }
 
     deleteItems() {
+        this.state.addState(this.items);
         var that = this;
         const items = document.querySelectorAll(this.id + ' option:checked');
         items.forEach(function (item) {
