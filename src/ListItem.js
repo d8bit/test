@@ -1,6 +1,6 @@
 class ListItem {
-    constructor() {
-        this.text = '';
+    constructor(text) {
+        this.text = text;
     }
 
     create() {
