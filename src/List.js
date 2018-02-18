@@ -1,4 +1,5 @@
 import ListItem from './ListItem';
+import $ from 'jQuery';
 import _ from 'underscore';
 
 class List {
@@ -6,6 +7,36 @@ class List {
     constructor(id) {
         this.id = id;
         this.items = [];
+        const that = this;
+        this.init(function() {
+            if (null != sessionStorage.getItem('list')) {
+                that.load();
+            }
+            that.render();
+        });
+    }
+
+    load() {
+        const session = JSON.parse(sessionStorage.getItem('list'));
+        this.items = [];
+        const that = this;
+        session.items.forEach(function(item) {
+            that.addItem(item);
+        });
+    }
+
+    init(callback) {
+        const that = this;
+        $.getJSON("/restful/data.json", function(response) {
+            if (response.status == "success") {
+                response.data.forEach(function(item) {
+                    that.items.push(item);
+                });
+                callback();
+            } else {
+                alert('Initial load failed');
+            }
+        });
     }
 
     addItem(item) {
