@@ -43,15 +43,15 @@ class List {
 
     addItem(item) {
         const newItem = new ListItem(item);
-        this.items.push(newItem);
         this.state.addState(this.items);
+        this.items.push(newItem);
     }
 
     createItem(item) {
         let listItem = new ListItem();
         if (listItem.create()) {
-            this.items.push(listItem);
             this.state.addState(this.items);
+            this.items.push(listItem);
             this.render();
         }
     }
