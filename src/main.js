@@ -2,9 +2,12 @@ import List from './List';
 
 function init() {
     const listId = '#list'
+    const addBtnId = '#add-item-btn';
+    const delBtnId = '#delete-item-btn';
+
     const list = new List(listId);
-    const addButton = document.querySelector('#add-item-btn');
-    const deleteButton = document.querySelector('#delete-item-btn');
+    const addButton = document.querySelector(addBtnId);
+    const deleteButton = document.querySelector(delBtnId);
     addButton.addEventListener('click', function() {
         const text = list.addItem();
     });
