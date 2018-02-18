@@ -6,6 +6,7 @@ function load() {
     session.items.forEach(function(item) {
         list.addItem(item);
     });
+    list.render();
     return list;
 }
 
@@ -14,11 +15,9 @@ function init() {
     const addBtnId = '#add-item-btn';
     const delBtnId = '#delete-item-btn';
 
+    var list = new List(listId);
     if (null != sessionStorage.getItem('list')) {
         var list = load();
-        list.render();
-    } else {
-        var list = new List(listId);
     }
 
     const addButton = document.querySelector(addBtnId);
