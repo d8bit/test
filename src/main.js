@@ -1,6 +1,7 @@
 import List from './List';
 
-function init(listId) {
+function init() {
+    const listId = '#list'
     const list = new List(listId);
     const addButton = document.querySelector('#add-item-btn');
     const deleteButton = document.querySelector('#delete-item-btn');
@@ -20,4 +21,4 @@ function init(listId) {
     });
 }
 
-init("#list");
+init();
