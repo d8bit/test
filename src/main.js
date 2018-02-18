@@ -1,7 +1,7 @@
 import List from './List';
 
-function init() {
-    const list = new List("#list");
+function init(listId) {
+    const list = new List(listId);
     const addButton = document.querySelector('#add-item-btn');
     const deleteButton = document.querySelector('#delete-item-btn');
     addButton.addEventListener('click', function() {
@@ -11,6 +11,13 @@ function init() {
     deleteButton.addEventListener('click', function() {
         list.deleteItems();
     });
+
+    document.querySelector(listId).addEventListener('dblclick', function(event) {
+        console.log();
+        if (event.target.localName === 'option') {
+            list.deleteItem(event.target);
+        }
+    });
 }
 
-init();
+init("#list");

@@ -16,6 +16,13 @@ class List {
         }
     }
 
+    deleteItem(item) {
+        this.items = _.reject(this.items, function(element) {
+            return element.text === item.text;
+        });
+        this.render();
+    }
+
     deleteItems() {
         var that = this;
         const items = document.querySelectorAll(this.id + ' option:checked');
